@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+# Copyright (C) 2018 Reto Schneider (code@reto-schneider.ch)
+#
+
+uci -q batch <<-EOF >/dev/null
+  set network.lan.disabled=1
+
+  set network.wifi='interface'
+  set network.wifi.ifname='wlan0'
+  set network.wifi.proto='static'
+  set network.wifi.ipaddr='192.168.2.1'
+  set network.wifi.netmask='255.255.255.0'
+
+  commit network
+EOF
+
+exit 0

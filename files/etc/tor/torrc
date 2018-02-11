@@ -1,0 +1,19 @@
+VirtualAddrNetwork 10.192.0.0/10
+AutomapHostsSuffixes .onion,.exit
+AutomapHostsOnResolve 1
+TransPort 127.0.0.1:9040
+TransPort [::1]:9040
+DNSPort 127.0.0.1:9053
+DNSPort [::1]:9053
+
+# Used for development/testing
+SOCKSPort 127.0.0.1:9050 IPv6Traffic IPv4Traffic 
+SOCKSPort [::1]:9050 IPv6Traffic IPv4Traffic 
+
+# Trade anonymity for speed
+EnforceDistinctSubnets 0
+
+# Defaults from LEDE
+Log notice syslog
+DataDirectory /var/lib/tor
+User tor

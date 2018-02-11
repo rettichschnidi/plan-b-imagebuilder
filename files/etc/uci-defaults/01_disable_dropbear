@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# Copyright (C) 2018 Reto Schneider (code@reto-schneider.ch)
+#
+
+uci -q batch <<-EOF >/dev/null
+  set dropbear.@dropbear[0].enabled=0
+  commit dropbear
+EOF
+
+exit 0
