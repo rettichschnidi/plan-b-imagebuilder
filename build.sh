@@ -52,6 +52,15 @@ case $device in
       readonly sdk_archive_sha256sum=89a5d8f176ee7b647b377c993e3e49841cb1f8d1e2a3d5e286f0a6ce7c5cde28
       readonly imagebuilder_dirname=lede-imagebuilder-17.01.4-ar71xx-generic.Linux-x86_64
       readonly imagebuilder_archive_sha256sum=532d5011c46e9f77a687480a07d9a1e55657311a77c83d14651449c69820509c
+      readonly sdk_config_file=sdk.config-ar71xx-generic
+      ;;
+    gl-mt300a)
+      readonly base_url=https://downloads.openwrt.org/releases/17.01.4/targets/ramips/mt7620
+      readonly sdk_dirname=lede-sdk-17.01.4-ramips-mt7620_gcc-5.4.0_musl-1.1.16.Linux-x86_64
+      readonly sdk_archive_sha256sum=da2604d28eb1f0bf320cdad0b2a76cba8e4194b515105e151b0ebbc39dc34f53
+      readonly imagebuilder_dirname=lede-imagebuilder-17.01.4-ramips-mt7620.Linux-x86_64
+      readonly imagebuilder_archive_sha256sum=79a6cd335c0f490dce046ef555ba2457c04dfde687b7d604a598eeffe0b0e743
+      readonly sdk_config_file=sdk.config-ramips-mt7620
       ;;
     *)
       echo "Unknown device: ${device}" >&2
@@ -64,7 +73,7 @@ download_file ${base_url}/${sdk_archive} ${sdk_archive} ${sdk_archive_sha256sum}
 extract_archive ${sdk_archive}
 
 (
-  cp sdk.config-ar71xx-generic "${sdk_dirname_full}/.config"
+  cp ${sdk_config_file} "${sdk_dirname_full}/.config"
   cd "${sdk_dirname_full}"
   egrep "base|packages" feeds.conf.default > feeds.conf
   echo src-git plan_b https://github.com/rettichschnidi/plan-b-openwrt-custom-packages.git >> feeds.conf
