@@ -48,7 +48,7 @@ download_file ${base_url}/${sdk_archive} ${sdk_archive} ${sdk_archive_sha256sum}
 extract_archive ${sdk_archive}
 
 (
-  cp sdk.config-ar71xx "${sdk_dirname_full}/.config"
+  cp sdk.config-ar71xx-generic "${sdk_dirname_full}/.config"
   cd "${sdk_dirname_full}"
   egrep "base|packages" feeds.conf.default > feeds.conf
   echo src-git plan_b https://github.com/rettichschnidi/plan-b-openwrt-custom-packages.git >> feeds.conf
