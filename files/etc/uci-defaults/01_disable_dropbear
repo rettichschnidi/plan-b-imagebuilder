@@ -3,6 +3,8 @@
 # Copyright (C) 2018 Reto Schneider (code@reto-schneider.ch)
 #
 
+/etc/init.d/dropbear disable
+
 uci -q batch <<-EOF >/dev/null
   set dropbear.@dropbear[0].enabled=0
   commit dropbear
