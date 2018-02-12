@@ -6,6 +6,7 @@
 /etc/init.d/dropbear disable
 
 uci -q batch <<-EOF >/dev/null
+  set dropbear.@dropbear[0].PasswordAuth='off'
   set dropbear.@dropbear[0].enabled=0
   commit dropbear
 EOF
