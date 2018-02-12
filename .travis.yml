@@ -1,0 +1,9 @@
+git:
+  depth: 10
+language: c
+dist: trusty
+sudo: false
+
+script:
+  - ./build.sh gl-mt300a
+  - ./build.sh gl-ar150
