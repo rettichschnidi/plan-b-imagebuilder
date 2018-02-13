@@ -52,7 +52,7 @@ case $device in
       readonly sdk_archive_sha256sum=89a5d8f176ee7b647b377c993e3e49841cb1f8d1e2a3d5e286f0a6ce7c5cde28
       readonly imagebuilder_dirname=lede-imagebuilder-17.01.4-ar71xx-generic.Linux-x86_64
       readonly imagebuilder_archive_sha256sum=532d5011c46e9f77a687480a07d9a1e55657311a77c83d14651449c69820509c
-      readonly sdk_config_file=sdk.config-ar71xx-generic
+      readonly arch=mips_24kc
       ;;
     gl-mt300a)
       readonly base_url=https://downloads.openwrt.org/releases/17.01.4/targets/ramips/mt7620
@@ -60,7 +60,7 @@ case $device in
       readonly sdk_archive_sha256sum=da2604d28eb1f0bf320cdad0b2a76cba8e4194b515105e151b0ebbc39dc34f53
       readonly imagebuilder_dirname=lede-imagebuilder-17.01.4-ramips-mt7620.Linux-x86_64
       readonly imagebuilder_archive_sha256sum=79a6cd335c0f490dce046ef555ba2457c04dfde687b7d604a598eeffe0b0e743
-      readonly sdk_config_file=sdk.config-ramips-mt7620
+      readonly arch=mipsel_24kc
       ;;
     *)
       echo "Unknown device: ${device}" >&2
@@ -73,7 +73,7 @@ download_file ${base_url}/${sdk_archive} ${sdk_archive} ${sdk_archive_sha256sum}
 extract_archive ${sdk_archive}
 
 (
-  cp ${sdk_config_file} "${sdk_dirname_full}/.config"
+  cp sdk.config "${sdk_dirname_full}/.config"
   cd "${sdk_dirname_full}"
   egrep "base|packages" feeds.conf.default > feeds.conf
   echo src-git plan_b https://github.com/rettichschnidi/plan-b-openwrt-custom-packages.git >> feeds.conf
@@ -90,6 +90,6 @@ extract_archive ${imagebuilder_archive}
 
 (
   cd "${imagebuilder_dirname_full}"
-  echo "src sdk file:${sdk_dirname_full}/bin/packages/mips_24kc/plan_b" >> repositories.conf
-  make image PROFILE=${device} EXTRA_IMAGE_NAME=PlanB PACKAGES="-ppp -ppp-mod-pppoe tor ip6tables-mod-nat iperf3 curl ca-certificates ca-bundle" FILES="${files_dir}"
+  echo "src sdk file:${sdk_dirname_full}/bin/packages/${arch}/plan_b" >> repositories.conf
+  make image PROFILE=${device} EXTRA_IMAGE_NAME=PlanB PACKAGES="-ppp -ppp-mod-pppoe plan-b-tor ip6tables-mod-nat iperf3 curl ca-certificates ca-bundle" FILES="${files_dir}"
 )
