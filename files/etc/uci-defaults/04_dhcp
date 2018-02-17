@@ -20,9 +20,7 @@ uci -q batch <<-EOF >/dev/null
   set dhcp.wifi.start='100'
   set dhcp.wifi.limit='100'
   set dhcp.wifi.dhcpv6='disabled'
-  set dhcp.wifi.ra='server'
-  set dhcp.wifi.ra_management='0'
-  set dhcp.wifi.ra_default='2'
+  set dhcp.wifi.ra='disabled'
 
   commit dhcp
 EOF
