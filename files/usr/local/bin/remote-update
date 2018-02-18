@@ -6,13 +6,12 @@ local D4='\([0-9]\{4\}\)'
 local NL='
 '
 
+. /lib/functions/uci-defaults.sh
+. /lib/ar71xx.sh
+
 find_architecture()
 {
-	local ifs="$IFS"; IFS="-"
-	set -- $(opkg list_installed kernel)
-	IFS="$ifs"
-
-	echo "$3"
+  cat /tmp/sysinfo/board_name
 }
 
 find_image()
