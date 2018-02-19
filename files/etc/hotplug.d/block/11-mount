@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ "${DEVICENAME}" = "sda1" -a "$ACTION" = "add" ]; then
+  logger -t plan-b "Start dumping system information to USB stick"
+  /usr/local/bin/plan-b-dump
+  /sbin/block umount
+  logger -t plan-b "Finished dumping system information to USB stick"
+fi
