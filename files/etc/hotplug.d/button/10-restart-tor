@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ "$ACTION" = "released" -a "$BUTTON" = "reset" -a 1 -le $SEEN -a 5 -ge $SEEN ]; then
+  logger Reset button pressed for $SEEN seconds - restarting Tor
+  /etc/init.d/tor restart
+fi
+
+return 0
