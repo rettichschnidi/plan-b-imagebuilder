@@ -8,7 +8,7 @@ set -eu -o pipefail
 readonly topdir="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 readonly dl_dir="${topdir}/dl"
 readonly build_dir="${topdir}/build_dir"
-readonly files_dir="${topdir}/files"
+readonly files_dir="${topdir}/plan-b-openwrt-config/files"
 
 check_sha256sum() {
   local readonly full_path="$1"
