@@ -7,3 +7,4 @@ sudo: false
 script:
   - ./build.sh gl-mt300a
   - ./build.sh gl-ar150
+  - ./build.sh gl-ar300m

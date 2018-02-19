@@ -46,7 +46,7 @@ fi
 readonly device=$1
 
 case $device in
-    gl-ar150)
+    gl-ar150 | gl-ar300m)
       readonly base_url=https://downloads.openwrt.org/releases/17.01.4/targets/ar71xx/generic
       readonly sdk_dirname=lede-sdk-17.01.4-ar71xx-generic_gcc-5.4.0_musl-1.1.16.Linux-x86_64
       readonly sdk_archive_sha256sum=89a5d8f176ee7b647b377c993e3e49841cb1f8d1e2a3d5e286f0a6ce7c5cde28
