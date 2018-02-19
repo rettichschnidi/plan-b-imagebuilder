@@ -89,7 +89,8 @@ download_file ${base_url}/${imagebuilder_archive} ${imagebuilder_archive} ${imag
 extract_archive ${imagebuilder_archive}
 
 (
+  readonly extra_image_name=plan-b-$(git describe --dirty --always)
   cd "${imagebuilder_dirname_full}"
   echo "src sdk file:${sdk_dirname_full}/bin/packages/${arch}/plan_b" >> repositories.conf
-  make image PROFILE=${device} EXTRA_IMAGE_NAME=PlanB PACKAGES="-wpa_supplicant -ppp -ppp-mod-pppoe libustream-openssl plan-b-tor iperf3 curl ca-certificates ca-bundle kmod-usb-storage kmod-fs-msdos kmod-fs-ext4 block-mount" FILES="${files_dir}"
+  make image PROFILE=${device} EXTRA_IMAGE_NAME=${extra_image_name} PACKAGES="-wpa_supplicant -ppp -ppp-mod-pppoe libustream-openssl plan-b-tor iperf3 curl ca-certificates ca-bundle kmod-usb-storage kmod-fs-msdos kmod-fs-ext4 block-mount" FILES="${files_dir}"
 )
