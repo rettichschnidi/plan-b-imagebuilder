@@ -76,7 +76,7 @@ extract_archive ${sdk_archive}
   cp sdk.config "${sdk_dirname_full}/.config"
   cd "${sdk_dirname_full}"
   egrep "base|packages" feeds.conf.default > feeds.conf
-  echo src-git plan_b https://github.com/rettichschnidi/plan-b-openwrt-custom-packages.git >> feeds.conf
+  echo src-git plan_b https://github.com/rettichschnidi/plan-b-openwrt-custom-packages.git^316b13fee154a8812eea7d6a640cf6890541eab5 >> feeds.conf
   ./scripts/feeds update base packages plan_b
   ./scripts/feeds install -p plan_b -a -d y
   make defconfig
